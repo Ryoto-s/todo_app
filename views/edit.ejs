@@ -1,0 +1,17 @@
+<%- include('./partials/header') %>
+
+<div class="container">
+    <div class="todo-form">
+        <h2>ToDo編集</h2>
+        <form class="todo-list-item__action" action="/todos/<%= todo.id %>" method="post">
+            <input type="hidden" name="_method" value="put">
+            <input type="text" name="todoContent" value="<%= todo.content %>">
+            <input class="button button--complete" type="submit" value="更新">
+        </form>
+        <a class="todo-list-item" href="/">
+            <button class="button button--edit">一覧へ戻る</button>
+        </a>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>

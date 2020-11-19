@@ -1,0 +1,30 @@
+<%- include("./partials/header.ejs") %> 
+<!-- %= 文字列として、%-HTMLタグとして -->
+<div class="container">
+  <div class="todo-form">
+    <h2>ToDo作成</h2>
+    <form action="/todos" method="post">
+      <input type="text" name="todoContent">
+      <input type="submit" value="作成">
+    </form>
+  </div>
+
+  <div class="todo-list">
+    <h2>ToDo一覧</h2>
+    <ul>
+      <% todos.map(function(todo) { %>
+      <li class="todo-list-item">
+        <p><%= todo.content %></p>
+        <a class="todo-list-item__action" href="/todos/<%= todo.id %>/edit">
+          <button class="button button--edit">編集</button>
+        </a>
+        <form class="todo-list-item__action" action="/todos/<%= todo.id %>" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <input class="button button--complete" type="submit" value="完了">
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+</div>
+<%- include('./partials/footer') %>
